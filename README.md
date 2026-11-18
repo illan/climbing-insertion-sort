@@ -99,9 +99,9 @@ On sorted, 15,997 = 2*(n-1)-1: n-1 failed picks + n-1 insertion checks, minus ed
 
 6.2 Small arrays: loses below n ~ 100
 
-Hypothesis: RNG cost. Needs ∼1.7 randoms per element. http://Math.random costs far more than compare/write. For small n, saving is tiny.
+Hypothesis: RNG cost. Needs ∼1.7 randoms per element. Math.random costs far more than compare/write. For small n, saving is tiny.
 
-Test: replace http://Math.random with xorshift32. Node 22, Int32Array, time vs classic, <1 = faster.
+Test: replace Math.random with xorshift32. Node 22, Int32Array, time vs classic, <1 = faster.
 n	http://Math.random	xorshift32
 4	5.3x	1.9x
 16	9.2x	1.5x
@@ -110,7 +110,7 @@ n	http://Math.random	xorshift32
 256	1.02x	0.63x
 512	0.73x	0.56x
 1024	0.72x	0.65x
-Break-even: ∼256 with http://Math.random, ∼32-64 with xorshift32. Still 1.5-1.9x slower at n<=16, probably extra compares/swaps.
+Break-even: ∼256 with Math.random, ∼32-64 with xorshift32. Still 1.5-1.9x slower at n<=16, probably extra compares/swaps.
 
 xorshift32: Marsaglia, JSS 8(14), 2003. https://doi.org/10.18637/jss.v008.i14
 
@@ -118,7 +118,7 @@ xorshift32: Marsaglia, JSS 8(14), 2003. https://doi.org/10.18637/jss.v008.i14
     s ^= s >>> 17;
     s ^= s << 5;
 
-Period 2^32-1, not crypto-secure. V8 http://Math.random uses xorshift128+, relative of same family.
+Period 2^32-1, not crypto-secure. V8 Math.random uses xorshift128+, relative of same family.
 
 6.3 Memory hierarchy
 
